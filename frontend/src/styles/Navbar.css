@@ -1,0 +1,66 @@
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 40px;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .logo {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .unstop-logo {
+    height: 70px;
+    width: auto;
+  }
+  
+  .navbar-left,
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .nav-button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius:20px;
+    transition: all 0.2s ease;
+  }
+  
+  .nav-button:hover {
+    border:1px solid rgb(3, 82, 185);
+    color: rgb(3, 82, 185);
+  }
+  .nav-button:active {
+    border:1px solid rgb(3, 82, 185);
+    color: rgb(3, 82, 185);
+  }
+  .login-button {
+    background-color: rgb(3, 82, 185); 
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-button:hover {
+    background-color: rgba(3, 82, 185, 0.5); 
+    color: #fff;
+  }
