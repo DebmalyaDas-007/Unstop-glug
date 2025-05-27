@@ -1,0 +1,96 @@
+import { Event } from "../models/Event.model.js";
+import {Team} from "../models/Team.model.js"
+export const viewAllTeams=async(req,res)=>{
+   try {
+     const eventId=req.params.eventId;
+     const event =await Event.findById(eventId).populate("Teams");
+     if(!event){
+         return res.status(404).json({
+             message:"event not found",
+             success:false
+         })
+     }
+     const teamsArray=event.Teams;
+     res.status(200).return({
+         teams:teamsArray,
+         success:true
+     })
+   } catch (error) {
+    console.log(error)
+   }
+    
+}
+
+
+export const viewTeamById=async(req,res)=>{
+    try {
+        const eventId=req.params.eventId;
+        const teamId=req.params.teamId;
+        const team = await Team.findOne({ _id: teamId, eventId:eventId });
+        if(!team){
+            return res.status(404).json({
+                message:"Team not found.",
+                success:false
+            })
+        }
+        return res.status(200).json({
+            team,
+            success:true
+        })
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+
+export const createTeam=async(req,res)=>{
+    
+  try {
+    const{TeamName}=req.body;
+     const LeaderId=req._id;
+     const eventId=req.params.eventId;
+    const checkTeam=await Team.findOne({name:TeamName});
+    if(checkTeam){
+        return res.status(400).json({
+            message:"You can not register same Team",
+            success:false
+        })
+    }
+    const checkEvent=await Event.findById(eventId)
+    if(!checkEvent){
+        return res.status(404).json({
+            message:"Event not found.",
+            success:false
+        })
+    }
+    const checkLeader=await Team.findOne({teamLeader:LeaderId,eventId:eventId});
+    if(checkLeader){
+        return res.status(400).json({
+            message:"You already registered a team",
+            success:false
+        })
+    }
+    newTeam=await Team.create({
+        name:TeamName,       
+        teamLeader:LeaderId,
+        eventId:eventId
+    })
+
+    checkEvent.Teams.push(newTeam._id);
+    await checkEvent.save();
+
+    return res.status(201).json({
+        message:"Team Created successfully",
+        newTeam,
+        success:true
+      })
+
+  } catch (error) {
+    console.log(error);
+    
+  }
+
+}
+
+//team members apply

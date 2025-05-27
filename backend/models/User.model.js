@@ -18,6 +18,11 @@ const UserSchema=new mongoose.Schema({
     avatar:{
         type:String,
         required:true
+    },
+    role:{
+        type:String,
+        enum:['admin','candidate'],
+        required:true
     }
 },{timestamps:true});
 

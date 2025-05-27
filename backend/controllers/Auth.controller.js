@@ -2,7 +2,14 @@ import User from "../models/User.model.js";
 import jwt from "jsonwebtoken";
 export const login=async(req,res)=>{
     try{
-        const {name,email,phoneNumber,avatar}=req.body;
+        const {name,email,phoneNumber,avatar,role}=req.body;
+        if(!name||!email||!avatar||!role){
+            return res.status(400).json({
+                message:"something is missing",
+                success:false
+            });
+        }
+     
         let user
         user = await User.findOne({email});
         if(!user){
@@ -10,13 +17,16 @@ export const login=async(req,res)=>{
                 name,
                 email,
                 phoneNumber,
-                avatar
+                avatar,
+                role
             });
             await newUser.save();
             user = newUser;
         }
-        user =user.toObject({getters:true});
-        const token = jwt.sign(user,process.env.JWT_SECRET);
+        const tokenData={
+            userId:user._id
+        }
+        const token = jwt.sign(tokenData,process.env.JWT_SECRET,{ expiresIn: '1d' });
         res.cookie('access_token',token,{
             httpOnly:true
         })
@@ -32,6 +42,16 @@ export const login=async(req,res)=>{
         })
     }
 } 
+export const logout=async(req,res)=>{
+    try {
+        return res.status(200).cookie('access_token',"",{maxAge:0}).json({
+            message:"Logout successful",
+            success:true
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 export const getUser=async(req,res)=>{
     try {
