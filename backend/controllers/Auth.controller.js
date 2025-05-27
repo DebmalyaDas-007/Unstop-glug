@@ -24,7 +24,8 @@ export const login=async(req,res)=>{
             user = newUser;
         }
         const tokenData={
-            userId:user._id
+            userId:user._id,
+            role:user.role
         }
         const token = jwt.sign(tokenData,process.env.JWT_SECRET,{ expiresIn: '1d' });
         res.cookie('access_token',token,{

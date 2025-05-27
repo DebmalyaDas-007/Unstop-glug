@@ -11,7 +11,7 @@ export const viewAllTeams=async(req,res)=>{
          })
      }
      const teamsArray=event.Teams;
-     res.status(200).return({
+    return res.status(200).json({
          teams:teamsArray,
          success:true
      })
@@ -51,6 +51,7 @@ export const createTeam=async(req,res)=>{
      const LeaderId=req._id;
      const eventId=req.params.eventId;
     const checkTeam=await Team.findOne({name:TeamName});
+   
     if(checkTeam){
         return res.status(400).json({
             message:"You can not register same Team",
@@ -64,6 +65,8 @@ export const createTeam=async(req,res)=>{
             success:false
         })
     }
+    ;
+
     const checkLeader=await Team.findOne({teamLeader:LeaderId,eventId:eventId});
     if(checkLeader){
         return res.status(400).json({
@@ -71,7 +74,14 @@ export const createTeam=async(req,res)=>{
             success:false
         })
     }
-    newTeam=await Team.create({
+    const maxTeams=checkEvent.maxTeams;
+    if (checkEvent.Teams.length===maxTeams){
+        return res.status(400).json({
+            message:"Max team participation reached",
+            success:false
+        })
+    }
+    const newTeam=await Team.create({
         name:TeamName,       
         teamLeader:LeaderId,
         eventId:eventId
@@ -92,5 +102,28 @@ export const createTeam=async(req,res)=>{
   }
 
 }
-
-//team members apply
+//delete team by leader
+export const deleteTeam=async(req,res)=>{
+    try {
+        const eventId=req.params.eventId;
+        const teamId=req.params.teamId;
+        const team = await Team.findOne({ _id: teamId, eventId:eventId });
+        if(!team){
+            return res.status(404).json({
+                message:"Team not found.",
+                success:false
+            })
+        }
+        await Team.findByIdAndDelete(teamId);
+        await Event.findByIdAndUpdate(eventId, {
+            $pull: { teams: teamId }
+          });
+        return res.status(200).json({
+            message: "Team deleted successfully.",
+            success: true
+          });
+    } catch (error) {
+        console.log(error);
+        
+    }
+}

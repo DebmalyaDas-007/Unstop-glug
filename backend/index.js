@@ -4,7 +4,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import AuthRoute from './routes/Auth.route.js';
 import EventRoute from './routes/Event.route.js';
-import TeamRoute from './routes/Team.route.js'
+import TeamRoute from './routes/Team.route.js';
+import collabRoute from './routes/collaborations.route.js'
 import cookieParser from 'cookie-parser';
 const app=express();
 app.use(express.json());
@@ -19,6 +20,7 @@ const PORT= process.env.PORT || 3000;
 app.use('/api/auth',AuthRoute);
 app.use('/api/event',EventRoute);
 app.use('/api/event',TeamRoute);
+app.use('/api/collaborations',collabRoute);
 
 mongoose.connect(process.env.MONGODB_CONN).then(()=>{
     console.log("MongoDB connected");

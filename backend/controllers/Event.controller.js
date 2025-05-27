@@ -1,14 +1,15 @@
 import { Event } from "../models/Event.model.js";
+import User from "../models/User.model.js"
 export const RegisterEvent=async(req,res)=>{
  try {
-       const {title,maxRounds,date,maxTeams}=req.body;
-       if(!title||!maxRounds||!date||!maxTeams){
-        return resizeBy.status(400).json({
+       const {title,maxRounds,date,maxTeams,category}=req.body;
+       if(!title||!maxRounds||!date||!maxTeams||!category){
+        return res.status(400).json({
             message:"fields missing",
             success:false
         })
        }
-       const checkevent=Event.findOne({title});
+       const checkevent=await Event.findOne({title});
        if(checkevent){
         return res.status(400).json({
             message:"event exists by same name",
@@ -21,6 +22,7 @@ export const RegisterEvent=async(req,res)=>{
         maxRounds:Number(maxRounds),
         date:Date(date),
         maxTeams:Number(maxTeams),
+        category:category,
         createdBy:UserId
        })
 
@@ -103,7 +105,7 @@ export const getEventByid=async(req,res)=>{
 }
 export const UpdateEvent=async(req,res)=>{
     try {
-        const {description,maxRounds,date,prizePool,maxTeams,eligibility}=req.body;
+        const {description,maxRounds,date,prizePool,maxTeams,eligibility,category}=req.body;
         const coverImage = req.file;
         if(eligibility){
             const eligibilityArray=eligibility.split(",")
@@ -116,6 +118,12 @@ export const UpdateEvent=async(req,res)=>{
                 success:false
             })
         }
+        if (event.createdBy.toString() !== req._id) {
+            return res.status(403).json({
+              message: "Only the event creator can update this event.",
+              success: false,
+            });
+          }
        
         if(description) event.description=description;
         if(maxRounds)   event.maxRounds=maxRounds;
@@ -123,6 +131,7 @@ export const UpdateEvent=async(req,res)=>{
         if(prizePool) event.prizePool=prizePool;
         if(maxTeams) event.maxTeams=maxTeams
         if(eligibility) event.eligibility=eligibilityArray
+        if(category)event.category=category
         
         await event.save();
         return res.status(200).json({
@@ -136,6 +145,7 @@ export const UpdateEvent=async(req,res)=>{
     }
 }
 
+//admin function
 export const deleteEvent=async(req,res)=>{
     try {
         const EventId=req.params.id;
@@ -146,6 +156,12 @@ export const deleteEvent=async(req,res)=>{
                 success:false
             })
         }
+        if (event.createdBy.toString() !== req.user._id) {
+            return res.status(403).json({
+              message: "Only the event creator can delete this event.",
+              success: false,
+            });
+          }
         await Event.findByIdAndDelete(EventId);
         return res.status(200).json({
             message:'event deleted succesfully',
@@ -155,4 +171,56 @@ export const deleteEvent=async(req,res)=>{
         console.log(error);
         
     }
+}
+
+
+
+//collaborations
+
+
+export const sendingCollaborationRequest=async(req,res)=>{
+ try {
+       const {email,designation}=req.body;
+       const EventId=req.params.id;
+           const event=await Event.findById(EventId);
+       const user=await User.findOne({email:email});
+       if(!user || user.role.toString() !=='admin'){
+           return res.status(404).json({
+               message:"No user found.",
+               success:false
+           })
+       }
+       if (event.createdBy.toString() !== req.user._id.toString()) {
+           return res.status(403).json({
+             message: "Only the event creator can manage collaborations of this event.",
+             success: false,
+           });
+         }
+         const alreadyCollaborator = event.collaborations.find(
+            (collab) => collab.collaborator.toString() === user._id.toString()
+          );
+
+            if (alreadyCollaborator) {
+            return res.status(409).json({
+            message: "This user is already invited to collaborate.",
+            success: false,
+            });
+        }
+        event.collaborations.push({
+            collaborator: user._id,
+            designation:designation, // make sure this comes from the request
+            status: 'pending'
+          });
+          
+          await event.save();
+          
+          return res.status(200).json({
+            message: "Collaboration request sent.",
+            success: true
+          });
+ } catch (error) {
+    console.log(error);
+    
+ }
+
 }

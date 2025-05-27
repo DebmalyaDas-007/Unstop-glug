@@ -27,6 +27,29 @@ const EventSchema= new mongoose.Schema({
     eligibility:{
         type:String
     },
+    collaborations:[
+        {
+            collaborator: {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: "User"
+            },
+            designation: {
+              type: String,
+              enum: ["manager", "judge", "mentor", "volunteer"]
+            },
+            status:{
+                type:String,
+                enum:["accepted","pending","rejected"],
+                default:"pending"
+            }
+          }
+    ],
+    category:{
+        type: String,
+        enum:['movies','coding','sports','education','science','tech','festival','quiz','more'],
+        default:'more',
+        required:true
+    },
     Rounds:[
         {
             type:mongoose.Schema.Types.ObjectId,
