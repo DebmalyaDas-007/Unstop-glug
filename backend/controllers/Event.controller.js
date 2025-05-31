@@ -36,9 +36,6 @@ export const RegisterEvent=async(req,res)=>{
  }
 }
 
-
-//view all events to user
-
 export const getAllEvents=async(req,res)=>{
     try {
         const keywords= req.query.keyword || "";
@@ -144,8 +141,6 @@ export const UpdateEvent=async(req,res)=>{
         
     }
 }
-
-//admin function
 export const deleteEvent=async(req,res)=>{
     try {
         const EventId=req.params.id;
@@ -172,12 +167,6 @@ export const deleteEvent=async(req,res)=>{
         
     }
 }
-
-
-
-//collaborations
-
-
 export const sendingCollaborationRequest=async(req,res)=>{
  try {
        const {email,designation}=req.body;

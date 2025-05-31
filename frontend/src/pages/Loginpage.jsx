@@ -49,6 +49,10 @@ function Loginpage() {
     }
   return (
 <div className="login-container">
+<video autoPlay muted loop className="bg-video">
+    <source src="src/assets/loginbg.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
       <div className="login-box">
         <h2>Welcome</h2>
         <ToggleButton onSelect={(role) => setSelectedRole(role)} />

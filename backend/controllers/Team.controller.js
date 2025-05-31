@@ -1,5 +1,6 @@
 import { Event } from "../models/Event.model.js";
 import {Team} from "../models/Team.model.js"
+import User from "../models/User.model.js";
 export const viewAllTeams=async(req,res)=>{
    try {
      const eventId=req.params.eventId;
@@ -26,7 +27,7 @@ export const viewTeamById=async(req,res)=>{
     try {
         const eventId=req.params.eventId;
         const teamId=req.params.teamId;
-        const team = await Team.findOne({ _id: teamId, eventId:eventId });
+        const team = await Team.findOne({ _id: teamId, eventId:eventId }).populate("members");
         if(!team){
             return res.status(404).json({
                 message:"Team not found.",
@@ -86,7 +87,9 @@ export const createTeam=async(req,res)=>{
         teamLeader:LeaderId,
         eventId:eventId
     })
-
+    const teamLeader=await User.findById(LeaderId);
+    newTeam.members.push(teamLeader);
+    await newTeam.save();
     checkEvent.Teams.push(newTeam._id);
     await checkEvent.save();
 
@@ -102,7 +105,7 @@ export const createTeam=async(req,res)=>{
   }
 
 }
-//delete team by leader
+//delete team by leader or event admin
 export const deleteTeam=async(req,res)=>{
     try {
         const eventId=req.params.eventId;

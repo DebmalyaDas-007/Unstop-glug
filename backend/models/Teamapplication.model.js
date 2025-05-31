@@ -6,6 +6,11 @@ const TeamapplicationSchema= new mongoose.Schema({
         ref:"Team",
         required:true
     },
+    event:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Event",
+        reqquired:true
+    },
     applicant:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"User",
@@ -13,8 +18,9 @@ const TeamapplicationSchema= new mongoose.Schema({
     },
     status:{
         type:String,
-        enum:[pending,accepted,rejected]
+        enum:['pending','accepted','rejected'],
+        default:'pending'
     }
 })
 
-const TeamApplication=mongoose.model("TeamApplication",TeamapplicationSchema)
+export const TeamApplication=mongoose.model("TeamApplication",TeamapplicationSchema)

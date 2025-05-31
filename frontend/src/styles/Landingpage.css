@@ -1,0 +1,8 @@
+.nav-hero {
+    background:   linear-gradient(to bottom, rgba(0, 0, 0, 0.863), transparent 60%, transparent 60%, rgba(0, 0, 0, 0.815)), url("../assets/hero.jpg") no-repeat center center;
+    
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}

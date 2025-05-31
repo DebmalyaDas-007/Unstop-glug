@@ -26,15 +26,16 @@ function AdminDashboard() {
         } 
         getUser();
     },[])
-    if(!userData || !userData.success) return <div>Loading...</div>
+    if(!userData||!userData.success) return <div>Loading...</div>
   return (
-    <div>
-      <h1>User Data</h1>
-      <p>Name:{userData.user.name}</p>
-      <p>Email:{userData.user.email}</p>
-        <p>Phone Number:{userData.user.phoneNumber}</p>
-        <p>Avatar:{userData.user.avatar}</p>
-    </div>
+    // <div>
+    //   <h1>User Data</h1>
+    //   <p>Name:{userData.user.name}</p>
+    //   <p>Email:{userData.user.email}</p>
+    //     <p>Phone Number:{userData.user.phoneNumber}</p>
+    //     <p>Avatar:{userData.user.avatar}</p>
+    // </div>\-
+    <div></div>
   )
 }
 

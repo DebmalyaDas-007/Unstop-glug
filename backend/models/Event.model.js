@@ -50,7 +50,7 @@ const EventSchema= new mongoose.Schema({
         default:'more',
         required:true
     },
-    Rounds:[
+Rounds:[        
         {
             type:mongoose.Schema.Types.ObjectId,
             ref:'Round'
