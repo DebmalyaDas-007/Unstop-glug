@@ -25,7 +25,11 @@ export const login=async(req,res)=>{
         }
         const tokenData={
             userId:user._id,
-            role:user.role
+            role:user.role,
+            name:user.name,
+            email:user.email,
+            avatar:user.avatar,
+            phoneNumber:user.phoneNumber
         }
         const token = jwt.sign(tokenData,process.env.JWT_SECRET,{ expiresIn: '1d' });
         res.cookie('access_token',token,{
@@ -63,7 +67,10 @@ export const getUser=async(req,res)=>{
             message:"Unauthorized"
         })
        }
-       const user = jwt.verify(token,process.env.JWT_SECRET);
+       const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    
+    // Fetch full user profile from DB
+    const user = await User.findById(decoded.userId)
        res.status(200).json({
         success:true,
         user

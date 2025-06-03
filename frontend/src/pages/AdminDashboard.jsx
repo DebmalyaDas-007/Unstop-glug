@@ -18,6 +18,8 @@ function AdminDashboard() {
                }
                const responseData= await apiResponse.json();
                setUser (responseData);
+               console.log("Fetched user data:", responseData);
+
                 
             } catch (error) {
                 console.log("Error fetching user data:",error);
@@ -28,14 +30,15 @@ function AdminDashboard() {
     },[])
     if(!userData||!userData.success) return <div>Loading...</div>
   return (
-    // <div>
-    //   <h1>User Data</h1>
-    //   <p>Name:{userData.user.name}</p>
-    //   <p>Email:{userData.user.email}</p>
-    //     <p>Phone Number:{userData.user.phoneNumber}</p>
-    //     <p>Avatar:{userData.user.avatar}</p>
-    // </div>\-
-    <div></div>
+    <div>
+    <div>
+      <h1>User Data</h1>
+      <p>Name:{userData.user.name}</p>
+      <p>Email:{userData.user.email}</p>
+        <p>Phone Number:{userData.user.phoneNumber}</p>
+        <p>Avatar:{userData.user.avatar}</p>
+    </div>
+    </div>
   )
 }
 

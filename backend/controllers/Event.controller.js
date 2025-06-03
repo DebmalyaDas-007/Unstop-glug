@@ -2,8 +2,8 @@ import { Event } from "../models/Event.model.js";
 import User from "../models/User.model.js"
 export const RegisterEvent=async(req,res)=>{
  try {
-       const {title,maxRounds,date,maxTeams,category}=req.body;
-       if(!title||!maxRounds||!date||!maxTeams||!category){
+       const {title,maxRounds,date,maxTeams,category,location,description}=req.body;
+       if(!title||!maxRounds||!date||!maxTeams||!category||!location||!description){
         return res.status(400).json({
             message:"fields missing",
             success:false
@@ -22,7 +22,9 @@ export const RegisterEvent=async(req,res)=>{
         maxRounds:Number(maxRounds),
         date:Date(date),
         maxTeams:Number(maxTeams),
+        location:location,
         category:category,
+        description:description,
         createdBy:UserId
        })
 
@@ -59,6 +61,26 @@ export const getAllEvents=async(req,res)=>{
         })
     } catch (error) {
         console.log(error)
+    }
+}
+export const getByCategory=async(req,res)=>{
+    try {
+        const category=req.params.category;
+        const event=await Event.find({category:category});
+        if (!event || event.length === 0){
+            return res.status(400).json({
+                message:"events not found",
+                success:false
+            })
+        }
+        return res.status(200).json({
+            message:"got all events",
+            event,
+            success:true
+        })
+    } catch (error) {
+        console.log(error);
+        
     }
 }
 export const getAdminEvents=async(req,res)=>{

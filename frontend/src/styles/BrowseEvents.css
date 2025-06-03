@@ -1,0 +1,150 @@
+/* General page font and reset */
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  /* Page container */
+  .events-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3, #f4e2d8, #fceabb);
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+  
+  /* Search input area */
+  .input {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  
+  .input input[type="text"] {
+    width: 100%;
+    padding: 12px 20px 12px 45px;
+    font-size: 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(6px);
+    color: #111;
+    transition: all 0.3s ease;
+  }
+  
+  .input input[type="text"]::placeholder {
+    color: #888;
+  }
+  
+  .input input[type="text"]:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    background: rgba(255, 255, 255, 0.95);
+  }
+  
+  /* Magnifying glass icon (emoji-based fallback) */
+  .input::before {
+    content: "🔍";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #777;
+    pointer-events: none;
+  }
+  
+  /* Optional search button (icon background) */
+  .input button {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 32px;
+    width: 32px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #6366f1;
+    background-image: url("../assets/search.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .input button:hover {
+    background-color: #4f46e5;
+  }
+  
+  /* Grid of event cards */
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    width: 100%;
+    max-width: 1300px;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+  
+  /* Individual event card */
+  .event-card {
+    background-color: white;
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: fadeIn 0.4s ease-in-out;
+  }
+  
+  .event-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* Fallback for no events */
+  .events-container > div:empty::before {
+    content: "No events available";
+    color: #444;
+    font-size: 16px;
+    text-align: center;
+    display: block;
+    margin: 60px auto;
+  }
+  
+  /* Responsive tweaks */
+  @media screen and (max-width: 768px) {
+    .events-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+  
+    .input::before {
+      left: 16px;
+    }
+  
+    .input button {
+      right: 16px;
+    }
+  }
+  
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

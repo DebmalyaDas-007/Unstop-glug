@@ -1,0 +1,114 @@
+.modern-event-card {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    max-width: 480px;
+    min-height:500px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    margin: 20px auto;
+  }
+  
+  .modern-event-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .event-image-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .event-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .event-info {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .event-date {
+    flex-shrink: 0;
+    text-align: center;
+    background: #f3f4f6;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-weight: 700;
+    color: #1f2937;
+  }
+  
+  .event-day {
+    display: block;
+    font-size: 20px;
+    line-height: 1;
+  }
+  
+  .event-month {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-top: 2px;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  
+  .event-main {
+    flex: 1;
+  }
+  
+  .event-location {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 4px;
+  }
+  
+  .event-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #111827;
+  }
+  
+  .event-description {
+    font-size: 14px;
+    color: #374151;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  
+  .event-price {
+    font-size: 13px;
+    color: #10b981;
+    font-weight: 500;
+  }
+  
+  .event-footer {
+    padding: 16px 20px;
+    border-top: 1px solid #e5e7eb;
+    text-align: right;
+  }
+  
+  .register-button {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .register-button:hover {
+    background-color: #2563eb;
+  }
+  

@@ -1,0 +1,179 @@
+.event-page {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Event Image Card */
+  .event-image-container {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+  }
+  
+  .event-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  /* Badges over image */
+  .location,
+  .category,
+  .prize,
+  .date {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  
+  .location {
+    top: 1rem;
+    left: 1rem;
+  }
+  
+  .category {
+    top: 1rem;
+    right: 1rem;
+    background-color: #e8f0ff;
+    color: #175cd3;
+  }
+  
+  .prize {
+    bottom: 1rem;
+    left: 1rem;
+    background-color: #fff7e6;
+    color: #ef6c00;
+  }
+  
+  .date {
+    bottom: 1rem;
+    right: 1rem;
+    background-color: #e6fff2;
+    color: #009e60;
+  }
+  
+  /* Register Button */
+  .register {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+  }
+  
+  .register button {
+    background-color: #0057ff;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .register button:hover {
+    background-color: #0040cc;
+  }
+  
+  /* Title Section */
+  .title {
+    margin-bottom: 1.5rem;
+  }
+  
+  .title h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+  }
+  
+  /* Event Info Cards */
+  .info-card {
+    display: flex;
+    gap: 2rem;
+    background-color: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .info-card span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 120px;
+  }
+  
+  .info-card h4 {
+    font-size: 1.6rem;
+    color: #0057ff;
+    margin: 0;
+  }
+  
+  .info-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #666;
+  }
+  
+  /* Description */
+  .description {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+  
+  /* Rounds */
+  .rounds {
+    background-color: #f0f4ff;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: inset 0 0 0 1px #d6e0ff;
+  }
+  
+  .rounds h1 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .info-card {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+  
+    .register {
+      justify-content: center;
+    }
+  
+    .title h1 {
+      font-size: 1.7rem;
+    }
+  
+    .event-page {
+      padding: 1rem;
+    }
+  }
+  

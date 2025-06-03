@@ -8,6 +8,7 @@ const EventSchema= new mongoose.Schema({
     },
     description:{
         type:String,
+        required:true
     },
     coverImage:{
         type:String
@@ -21,8 +22,13 @@ const EventSchema= new mongoose.Schema({
         type:Date,
         required:true
     },
+    location:{
+        type:String,
+        required:true
+    },
     prizePool:{
-        type:Number
+        type:Number,
+        required:true
     },
     eligibility:{
         type:String
@@ -46,7 +52,7 @@ const EventSchema= new mongoose.Schema({
     ],
     category:{
         type: String,
-        enum:['movies','coding','sports','education','science','tech','festival','quiz','more'],
+        enum:['coding','movies','sports','education','science','more'],
         default:'more',
         required:true
     },
