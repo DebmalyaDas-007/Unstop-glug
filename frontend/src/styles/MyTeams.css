@@ -1,0 +1,134 @@
+.teams-container {
+    padding: 32px;
+    max-width: 960px;
+    margin: auto;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.15rem;
+  }
+  
+  .section-title {
+    font-size: 30px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #1e3a8a;
+  }
+  
+  .team-card {
+    background: #eef4ff;
+    border: 1px solid #c7d2fe;
+    border-left: 6px solid #3b82f6;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 28px;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .team-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(59, 130, 246, 0.15);
+  }
+  
+  .team-name {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #1d4ed8;
+  }
+  
+  .event-info,
+  .leader-info {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3rem;
+    color: #1e40af;
+  }
+  
+  .leader-name {
+    color: #2563eb;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  
+  .members-section {
+    margin-top: 20px;
+  }
+  
+  .members-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 12px;
+  }
+  
+  .member-box {
+    background: linear-gradient(145deg, #e0ecff, #d0e0ff);
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid #93c5fd;
+    box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.05);
+    color: #1e3a8a;
+    font-weight: 500;
+    flex: 1 1 calc(45% - 12px);
+    min-width: 200px;
+    font-size: 1.05rem;
+  }
+  
+  .error-message {
+    text-align: center;
+    color: #dc2626;
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+  .no-teams-message {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #1e3a8a; /* Professional blue */
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    opacity: 0.9;
+  }
+  .teamDelete {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: flex-start;
+    margin-top: 16px; /* Adjust this as needed */
+  }
+  
+  .delete,
+  .manage {
+    background-color: #ef4444; 
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  .manage {
+    background-color: #4488ef;
+  }
+  .manage:hover {
+    background-color: #2374ee;
+  }
+  .manage:active {
+    background-color: #074094;
+  }
+  .delete:hover {
+    background-color: #dc2626;
+  }
+  .delete:active {
+    background-color: #b91c1c;
+  }
+  .delete:disabled {
+    background-color: #fca5a5;
+    cursor: not-allowed;
+  }
+  

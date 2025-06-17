@@ -1,6 +1,4 @@
-/* Profile.css - Light Theme Dashboard Style */
 
-/* Main container */
 .profile-container {
     background: #ffffff;
     border-radius: 16px;
@@ -18,7 +16,6 @@
     box-sizing: border-box;
   }
   
-  /* Welcome greeting */
   .greet {
     font-size: 1.75rem;
     font-weight: 600;
@@ -28,7 +25,6 @@
     text-align: left;
   }
   
-  /* Profile section layout */
   .profile-header {
     display: flex;
     align-items: center;

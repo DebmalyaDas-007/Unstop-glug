@@ -9,7 +9,7 @@
     height: 100vh;
     background-color: #ffffff;
     border-right: 1px solid #e0e0e0;
-    padding: 24px 16px;
+    padding: 28px 16px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -44,6 +44,7 @@
   
   .dashboard-button:hover {
     background-color: #e3f0ff;
-    color: #1a73e8;
+    border: 1px solid #c7d2fe;
+    color: #0a53b2;
   }
   

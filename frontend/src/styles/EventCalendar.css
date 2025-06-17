@@ -1,0 +1,17 @@
+
+.sx-react-calendar-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    height: 85vh;
+    padding: 20px;
+    background:#ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: auto;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .sx-react-calendar-wrapper:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  }

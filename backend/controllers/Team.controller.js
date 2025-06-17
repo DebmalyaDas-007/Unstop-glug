@@ -112,10 +112,10 @@ export const myTeams = async (req, res) => {
   try {
    
     const userId = req.user._id;
-
     const teams = await Team.find({ members: userId })
-      .populate('eventId', 'title date')
-      .populate('teamLeader', 'name email');  
+    .populate('eventId', 'title date')
+    .populate('teamLeader', 'name email')
+    .populate('members', 'name email');
 
     if (teams.length === 0) {
       return res.status(400).json({

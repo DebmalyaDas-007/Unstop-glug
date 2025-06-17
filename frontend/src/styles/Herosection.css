@@ -30,3 +30,20 @@
   margin-top: 0.5rem;
   line-height: 1.6;
 }
+.explore-button {
+  margin-top: 40px;
+  background: linear-gradient(135deg, #5c77ee 0%, #0c0c757c 100%); /* indigo-600 */
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 9999px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.explore-button:hover {
+  background-color: #4338ca; 
+}
