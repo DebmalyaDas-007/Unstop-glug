@@ -105,7 +105,39 @@ export const createTeam=async(req,res)=>{
   }
 
 }
-//delete team by leader or event admin
+
+
+export const myTeams = async (req, res) => {
+  console.log("myTeams function called");
+  try {
+   
+    const userId = req.user._id;
+
+    const teams = await Team.find({ members: userId })
+      .populate('eventId', 'title date')
+      .populate('teamLeader', 'name email');  
+
+    if (teams.length === 0) {
+      return res.status(400).json({
+        message: "No teams found",
+        success: false
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Your teams found",
+      teams
+    });
+  } catch (error) {
+    console.error("Error fetching user's teams:", error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal server error'
+    });
+  }
+};
+
+
 export const deleteTeam=async(req,res)=>{
     try {
         const eventId=req.params.eventId;

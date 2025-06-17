@@ -19,7 +19,7 @@ const PORT= process.env.PORT || 3000;
 
 app.use('/api/auth',AuthRoute);
 app.use('/api/event',EventRoute);
-app.use('/api/event',TeamRoute);
+app.use('/api/team',TeamRoute);
 app.use('/api/collaborations',collabRoute);
 
 mongoose.connect(process.env.MONGODB_CONN).then(()=>{

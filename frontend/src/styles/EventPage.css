@@ -22,7 +22,6 @@
     object-fit: cover;
   }
   
-  /* Badges over image */
   .location,
   .category,
   .prize,
@@ -65,7 +64,6 @@
     color: #009e60;
   }
   
-  /* Register Button */
   .register {
     display: flex;
     justify-content: flex-end;
@@ -87,7 +85,18 @@
   .register button:hover {
     background-color: #0040cc;
   }
-  
+  .Team-viewer{
+    background-color: #0057ff;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
   /* Title Section */
   .title {
     margin-bottom: 1.5rem;

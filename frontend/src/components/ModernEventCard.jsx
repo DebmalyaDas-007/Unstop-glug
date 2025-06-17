@@ -15,6 +15,7 @@ const ModernEventCard = (props) => {
 
       <div className="event-info">
         <div className="event-date">
+            
           <span className="event-day">{props.day || "24"}</span>
           <span className="event-month">{props.month || "DEC"}</span>
         </div>

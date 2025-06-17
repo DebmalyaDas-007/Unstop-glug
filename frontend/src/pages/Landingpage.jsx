@@ -9,7 +9,6 @@ import { GiSoccerBall, GiAtomicSlashes } from 'react-icons/gi';
 import { PiStudentFill } from 'react-icons/pi';
 import { BsThreeDots } from 'react-icons/bs';
 
-import ModernEventCard from '../components/ModernEventCard';
 
 
 

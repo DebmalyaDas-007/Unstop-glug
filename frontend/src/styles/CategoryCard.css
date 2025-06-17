@@ -54,7 +54,6 @@
     line-height: 1.3;
   }
   
-  /* Responsive tweak for smaller screens */
   @media (max-width: 400px) {
     .category-card {
       max-width: 100%;

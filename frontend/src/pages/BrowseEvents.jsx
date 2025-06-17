@@ -50,7 +50,7 @@ const BrowseEvents = () => {
                                     <ModernEventCard
                                         title={event.title}
                                         description={event.description}
-                                        Location={event.location || "Not specified"}
+                                        location={event.location || "Not specified"}
                                         day={day}
                                         month={month}
                                     />

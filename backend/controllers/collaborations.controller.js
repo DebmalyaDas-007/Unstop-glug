@@ -2,7 +2,7 @@ import {Event} from "../models/Event.model.js";
 
 export const viewAllCollaborationReq = async (req, res) => {
   try {
-    const userId = req.user._id;
+    const userId = req._id;
 
     const events = await Event.find({
       "collaborations.collaborator": userId

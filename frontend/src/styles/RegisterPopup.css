@@ -1,0 +1,110 @@
+
+.register-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .register-popup-box {
+    background-color: #ffffff;
+    border-radius: 18px;
+    padding: 32px 26px;
+    width: 90%;
+    max-width: 460px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: scaleIn 0.3s ease;
+  }
+  
+  .register-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 26px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  
+  .register-close-btn:hover {
+    color: #222;
+  }
+  
+  .register-handle h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .register-handle p {
+    font-size: 15px;
+    color: #4b5563;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  
+  .register-handle button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.25s ease;
+  }
+  
+  .register-handle button[type="submit"] {
+    background: linear-gradient(to right, #10b981, #059669); /* green */
+    color: white;
+  }
+  
+  .register-handle button[type="submit"]:hover {
+    background: linear-gradient(to right, #059669, #047857);
+  }
+  
+  .register-handle button[type="button"] {
+    background-color: #2563eb;
+    color: white;
+  }
+  
+  .register-handle button[type="button"]:hover {
+    background-color: #1d4ed8;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  

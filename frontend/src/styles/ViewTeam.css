@@ -1,0 +1,94 @@
+
+.view-team-wrapper {
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, #f3f6ff, #ffffff);
+    min-height: 100vh;
+  }
+  
+  .teamName {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .teamName h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #222;
+    margin: 0;
+  }
+  
+  .team-info-summary {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .teamMemberContainer {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .memberList {
+    width: 100%;
+    background: #fff;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #4f46e5;
+    transition: transform 0.2s ease;
+  }
+  
+  .memberList:hover {
+    transform: scale(1.02);
+  }
+  
+  .memberList h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    margin: 0;
+    color: #1a1a1a;
+  }
+  
+  .memberList p {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.92rem;
+    color: #555;
+    margin: 4px 0 0;
+  }
+  .joinBtn {
+    margin-top: 3rem;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #19751e);
+    color: #fff;
+    border: none;
+    border-radius: 9999px;
+    box-shadow: 0 8px 24px rgba(6, 88, 24, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .joinBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(6, 88, 24, 0.3);
+    background: linear-gradient(135deg, #19751ea8);
+  }
+  
+  .joinBtn:active {
+    transform: scale(0.97);
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.25);
+  }
+  

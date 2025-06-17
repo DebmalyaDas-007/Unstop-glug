@@ -39,8 +39,8 @@ function Loginpage() {
             const responseData= await apiResponse.json();
             console.log("Login successful:",responseData);
 
-            if (selectedRole === "Admin") navigate("/admin-dashboard");
-      else navigate("/user-dashboard");
+            if (selectedRole === "Admin") navigate("/");
+      else navigate("/");
 
         } catch (error) {
             console.log("Login failed:",error);
@@ -49,10 +49,8 @@ function Loginpage() {
     }
   return (
 <div className="login-container">
-<video autoPlay muted loop className="bg-video">
-    <source src="src/assets/loginbg.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
+
+   
       <div className="login-box">
         <h2>Welcome</h2>
         <ToggleButton onSelect={(role) => setSelectedRole(role)} />

@@ -33,7 +33,9 @@ export const login=async(req,res)=>{
         }
         const token = jwt.sign(tokenData,process.env.JWT_SECRET,{ expiresIn: '1d' });
         res.cookie('access_token',token,{
-            httpOnly:true
+            httpOnly: false,   
+  secure: true,
+  sameSite: 'None',
         })
         res.status(200).json({
             success:true,
@@ -69,7 +71,6 @@ export const getUser=async(req,res)=>{
        }
        const decoded = jwt.verify(token, process.env.JWT_SECRET);
     
-    // Fetch full user profile from DB
     const user = await User.findById(decoded.userId)
        res.status(200).json({
         success:true,

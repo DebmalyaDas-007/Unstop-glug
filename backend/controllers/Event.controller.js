@@ -2,8 +2,8 @@ import { Event } from "../models/Event.model.js";
 import User from "../models/User.model.js"
 export const RegisterEvent=async(req,res)=>{
  try {
-       const {title,maxRounds,date,maxTeams,category,location,description}=req.body;
-       if(!title||!maxRounds||!date||!maxTeams||!category||!location||!description){
+       const {title,maxRounds,date,maxTeams,category,location,description,prizePool}=req.body;
+       if(!title||!maxRounds||!date||!maxTeams||!category||!location||!description||!prizePool){
         return res.status(400).json({
             message:"fields missing",
             success:false
@@ -25,6 +25,7 @@ export const RegisterEvent=async(req,res)=>{
         location:location,
         category:category,
         description:description,
+        prizePool:prizePool,
         createdBy:UserId
        })
 

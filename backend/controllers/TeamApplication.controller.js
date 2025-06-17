@@ -3,42 +3,60 @@ import { Event } from "../models/Event.model.js";
 import {Team} from "../models/Team.model.js"
 import {TeamApplication} from "../models/Teamapplication.model.js"
 import User from "../models/User.model.js";
-export const sendTeamReq=async(req,res)=>{
-    try {
-        const {teamId,eventId}=req.params;
-        const userId=req._id;
-        const team = await Team.findOne({ _id: teamId, eventId:eventId });
-        if(!team){
-            return res.status(404).json({
-                message:"Team not found.",
-                success:false
-            })
-        }
-        for (const member of team.members) {
-            if (member.toString() === userId.toString()) {
-              return res.status(404).json({
-                message: "User already a member.",
-                success: false,
-              });
-            }
-          }
-          
-        const newTeamApplication=await TeamApplication.create({
-            Team:teamId,
-            event:eventId,
-            applicant:userId,
-            status:'pending'
-        })
-        return res.status(200).json({
-            message:"team application sent succesfully",
-            newTeamApplication,
-            success:true
-        })
-    } catch (error) {
-        console.log(error);
-        
+export const sendTeamReq = async (req, res) => {
+  try {
+    const { teamId, eventId } = req.params;
+    const userId = req._id;
+
+    const team = await Team.findOne({ _id: teamId, eventId });
+    if (!team) {
+      return res.status(404).json({
+        message: "Team not found.",
+        success: false
+      });
     }
-}
+    if (team.members.some(member => member.toString() === userId.toString())) {
+      return res.status(400).json({
+        message: "User is already a team member.",
+        success: false
+      });
+    }
+    const existingApplication = await TeamApplication.findOne({
+      Team: teamId,
+      applicant: userId,
+      status: 'pending'  
+    });
+
+    if (existingApplication) {
+      return res.status(400).json({
+        message: "You have already sent a request to this team.",
+        success: false
+      });
+    }
+    const newTeamApplication = await TeamApplication.create({
+      Team: teamId,
+      event: eventId,
+      applicant: userId,
+      status: 'pending'
+    });
+
+    return res.status(200).json({
+      message: "Team application sent successfully.",
+      newTeamApplication,
+      success: true
+    });
+
+  } catch (error) {
+    console.error("Error sending team request:", error);
+    return res.status(500).json({
+      message: "Internal server error.",
+      success: false
+    });
+  }
+};
+
+
+
 export const viewMyteam = async (req, res) => {
     try {
       const userId = req.user._id;

@@ -1,0 +1,95 @@
+.logout-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.logout-popup-box {
+  background: #fff;
+  border-radius: 20px;
+  padding: 30px 24px;
+  width: 90%;
+  max-width: 360px;
+  text-align: center;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  animation: scaleIn 0.3s ease;
+}
+
+.logout-popup-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 28px;
+}
+
+.logout-popup-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Cancel button */
+.logout-cancel-btn {
+  background-color: #f3f4f6;
+  color: #111827;
+  padding: 10px 24px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  flex: 1 1 45%;
+}
+
+.logout-cancel-btn:hover {
+  background-color: #e5e7eb;
+}
+
+/* Logout button */
+.logout-confirm-btn {
+  background: none;
+  color: red;
+  padding: 10px 24px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s ease;
+  flex: 1 1 45%;
+}
+
+.logout-confirm-btn:hover {
+  background:#e5e7eb ;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
