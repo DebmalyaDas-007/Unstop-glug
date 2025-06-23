@@ -7,6 +7,8 @@ import { useContext } from 'react';
 import { MainContext } from '../contextAPI';
 import MyTeams from './MyTeams.jsx';
 import EventCalendar from './EventCalendar.jsx';
+import MyApplications from '../components/MyApplications.jsx';
+import MyRequests from '../components/MyRequests.jsx';
 
 const RenderItems = () => {
   const { buttonTitle } = useContext(MainContext);
@@ -17,6 +19,10 @@ const RenderItems = () => {
     case 'viewteams':
       return <MyTeams />;
     // Add other cases here
+    case 'myapplications':
+      return <MyRequests/>
+    case 'teamrequests':
+      return <MyApplications/>
     case 'eventcalendar':
       return <EventCalendar/>
     default:

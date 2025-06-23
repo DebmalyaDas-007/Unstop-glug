@@ -22,7 +22,7 @@ export const sendTeamReq = async (req, res) => {
       });
     }
     const existingApplication = await TeamApplication.findOne({
-      Team: teamId,
+      team: teamId,
       applicant: userId,
       status: 'pending'  
     });
@@ -34,7 +34,7 @@ export const sendTeamReq = async (req, res) => {
       });
     }
     const newTeamApplication = await TeamApplication.create({
-      Team: teamId,
+      team: teamId,
       event: eventId,
       applicant: userId,
       status: 'pending'
@@ -99,13 +99,53 @@ export const viewMyteam = async (req, res) => {
       });
     }
   };
+  export const viewApplications = async (req, res) => {
+    try {
+      const userId = req.user._id;
   
+      const teams = await Team.find({ teamLeader: userId });
+  
+      if (teams.length === 0) {
+        return res.status(404).json({
+          message: "No teams found",
+          success: false,
+        });
+      }
+  
+      const teamIds = teams.map(team => team._id);
+      const applications = await TeamApplication.find({ Team: { $in: teamIds } })
+        .populate('applicant')
+        .populate('event')
+        .populate('Team');     
+  
+      return res.status(200).json({
+        message: "Applications found",
+        applications,
+        success: true,
+      });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({
+        message: "Internal server error",
+        success: false,
+      });
+    }
+  };
+  
+  
+
+
+
+
+
   export const respondToArequest = async (req, res) => {
     try {
-      const userId = req._id;
-      const { response,teamApplicationId} = req.body;
-      const eventId = req.params.eventId;
+      // Assuming user ID is attached to req by auth middleware
+      const reviewerId = req._id;
+      const { response, teamApplicationId } = req.body;
+      const { eventId } = req.params;
   
+      // Fetch event
       const event = await Event.findById(eventId);
       if (!event) {
         return res.status(404).json({
@@ -114,17 +154,17 @@ export const viewMyteam = async (req, res) => {
         });
       }
   
-      const application = await TeamApplication.findOne({
-        _id:teamApplicationId
-      });
+      // Fetch application
+      const application = await TeamApplication.findById(teamApplicationId);
       if (!application) {
         return res.status(404).json({
           message: "Application doesn't exist.",
           success: false,
         });
-      } 
-      const teamId=application.Team;
-      const team = await Team.findById(teamId).populate("members");
+      }
+  
+      // Fetch team and members
+      const team = await Team.findById(application.team).populate("members");
       if (!team) {
         return res.status(404).json({
           message: "Team doesn't exist.",
@@ -132,47 +172,84 @@ export const viewMyteam = async (req, res) => {
         });
       }
   
-      if (team.members.length >= event.maxTeams) {
-        return res.status(400).json({
-          message: "Maximum team size reached.",
-          success: false,
-        });
-      }
+      const applicantId = application.applicant.toString();
       const normalizedResponse = response.toLowerCase();
+  
       if (normalizedResponse === "accepted") {
-        if (team.members.some(member => member._id.toString() === userId.toString())) {
+        // Check if applicant is already in the team
+        if (team.members.some(member => member._id.toString() === applicantId)) {
           return res.status(400).json({
             message: "User already in team.",
             success: false,
           });
         }
   
-        application.status = "accepted";
-        await application.save();
+        // Check if team is full (you hardcoded 6 here)
+        if (team.members.length >= 6) {
+          return res.status(400).json({
+            message: "Team is already full.",
+            success: false,
+          });
+        }
   
-        team.members.push(userId);
+        // Add applicant to team
+        team.members.push(applicantId);
         await team.save();
-      } else if (normalizedResponse === "rejected") {
-        application.status = "rejected";
-        await application.save();
-      } else {
-        return res.status(400).json({
-          message: "Invalid response. Use 'accepted' or 'rejected'.",
-          success: false,
+  
+        // ✅ Delete application
+        await TeamApplication.findByIdAndDelete(teamApplicationId);
+  
+        return res.status(200).json({
+          message: "Application accepted and removed.",
+          success: true,
         });
       }
   
-      return res.status(200).json({
-        message: `Application ${normalizedResponse} successfully.`,
-        success: true,
-        application,
+      else if (normalizedResponse === "rejected") {
+        // ✅ Just delete the application
+        await TeamApplication.findByIdAndDelete(teamApplicationId);
+  
+        return res.status(200).json({
+          message: "Application rejected and removed.",
+          success: true,
+        });
+      }
+  
+      // Invalid input
+      return res.status(400).json({
+        message: "Invalid response. Use 'accepted' or 'rejected'.",
+        success: false,
       });
+  
     } catch (error) {
-      console.error(error);
+      console.error("Error responding to application:", error);
       return res.status(500).json({
         message: "Server error.",
         success: false,
       });
     }
   };
-  
+export const teamsRequested= async(req,res)=>{
+try {
+  const teamApps = await TeamApplication.find({ applicant: req.user._id })
+  .populate('event')
+  .populate('team');
+    if(!teamApps || teamApps.length ===0){
+      return res.status(400).json({
+        message: "No applications found",
+        success: false,
+      });
+    }
+    return res.status(200).json({
+      message:"team applications found",
+      teamApps,
+      success:true  
+    })
+} catch (error) {
+  console.error("Error responding to application:", error);
+  return res.status(500).json({
+    message: "Server error.",
+    success: false,
+  });
+}
+}  

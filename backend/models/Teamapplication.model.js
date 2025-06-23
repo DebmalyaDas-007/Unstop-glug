@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const TeamapplicationSchema= new mongoose.Schema({
-    Team:{
+    team:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Team",
         required:true
@@ -9,7 +9,7 @@ const TeamapplicationSchema= new mongoose.Schema({
     event:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Event",
-        reqquired:true
+        required:true
     },
     applicant:{
         type:mongoose.Schema.Types.ObjectId,

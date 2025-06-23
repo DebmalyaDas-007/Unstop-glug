@@ -12,7 +12,7 @@ import ViewTeam from './pages/ViewTeam.jsx'
 import TeamCreate from './pages/TeamCreate.jsx'
 import UserDashboard from './pages/UserDashboard.jsx'
 import { MainContext, MainProvider } from './contextAPI/index.jsx'
-
+import MyApplications from './components/MyApplications.jsx'
 function App() {
   return (
     <BrowserRouter>
@@ -46,7 +46,7 @@ function App() {
       <Route path='/event/:eventId/teams/:teamId' element={<ViewTeam/>}/>
       <Route path='/:id/teams/create-team' element={<TeamCreate/>}/>
     
-      
+      <Route path='/myApplications' element={<MyApplications/>}/>
     </Routes>
   </BrowserRouter>
   

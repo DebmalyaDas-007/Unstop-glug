@@ -22,7 +22,13 @@ const TeamSchema=new mongoose.Schema({
          type:mongoose.Schema.Types.ObjectId,
         ref:'Event',
         required:true
+    },
+    teamApplications:[
+        {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'TeamApplication'
     }
+    ]
 },{timestamps:true})
 
 export const Team=mongoose.model('Team',TeamSchema)
