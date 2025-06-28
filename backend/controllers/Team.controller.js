@@ -27,7 +27,7 @@ export const viewTeamById=async(req,res)=>{
     try {
         const eventId=req.params.eventId;
         const teamId=req.params.teamId;
-        const team = await Team.findOne({ _id: teamId, eventId:eventId }).populate("members");
+        const team = await Team.findOne({ _id: teamId, eventId:eventId }).populate("members").populate("eventId");
         if(!team){
             return res.status(404).json({
                 message:"Team not found.",
@@ -113,7 +113,7 @@ export const myTeams = async (req, res) => {
    
     const userId = req.user._id;
     const teams = await Team.find({ members: userId })
-    .populate('eventId', 'title date')
+    .populate('eventId')
     .populate('teamLeader', 'name email')
     .populate('members', 'name email');
 

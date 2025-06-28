@@ -51,6 +51,7 @@ const BrowseEvents = () => {
                                         title={event.title}
                                         description={event.description}
                                         location={event.location || "Not specified"}
+                                        image={event.coverImage}
                                         day={day}
                                         month={month}
                                     />

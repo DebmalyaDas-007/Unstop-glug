@@ -28,6 +28,8 @@ const MyTeams = () => {
             }
         })();
     }, []);
+    console.log(teamData);
+    
     if (teamData.length === 0) {
         return (
             <div className="no-teams-message">

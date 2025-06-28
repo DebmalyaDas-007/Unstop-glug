@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import '../styles/ModernEventCard.css'; 
-
+import { userContext } from '../contextAPI/UserContext';
+import { useContext } from 'react';
 const ModernEventCard = (props) => {
+
   return (
     <div className="modern-event-card" >
         
-      <div className="event-image-container">
+      <div className="event-image-container-card">
         <img
           src={props.image || "https://picsum.photos/400/200"}
           alt="Event"
@@ -24,7 +26,10 @@ const ModernEventCard = (props) => {
           <p className="event-location">📍 {props.location || "Mumbai, India"}</p>
           <h3 className="event-title">{props.title || "Bollywood Beats Night"}</h3>
           <p className="event-description">
-            {props.description || "Experience the glitz and glamour of Bollywood like never before, featuring live performances, DJ sets, and dance acts."}
+            "Hey! Don’t miss out — join us at {props.title} and be part of the experience!
+Get ready for an unforgettable time filled with energy, creativity, and connections. Whether you're here for the vibes, the performances, or just to meet awesome people — this event has something for everyone.
+
+Spots are limited, so register now and secure your place before it’s gone!"
           </p>
           <p className="event-price">Register to win</p>
         </div>

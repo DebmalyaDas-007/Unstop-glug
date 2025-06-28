@@ -16,8 +16,6 @@
     text-align: center;
     margin-bottom: 2.5rem;
   }
-  
-  /* Loading spinner animation */
   .spinner {
     animation: spin 1s linear infinite;
     color: #3182ce;
@@ -32,7 +30,6 @@
     }
   }
   
-  /* Loading and no apps states */
   .my-requests-container > div[style*="display: flex"] {
     display: flex;
     justify-content: center;

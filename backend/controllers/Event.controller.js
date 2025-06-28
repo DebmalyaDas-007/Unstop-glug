@@ -1,5 +1,7 @@
 import { Event } from "../models/Event.model.js";
 import User from "../models/User.model.js"
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import fs from 'fs'
 export const RegisterEvent=async(req,res)=>{
  try {
        const {title,maxRounds,date,maxTeams,category,location,description,prizePool}=req.body;
@@ -10,6 +12,7 @@ export const RegisterEvent=async(req,res)=>{
         })
        }
        const checkevent=await Event.findOne({title});
+
        if(checkevent){
         return res.status(400).json({
             message:"event exists by same name",
@@ -17,6 +20,14 @@ export const RegisterEvent=async(req,res)=>{
         })
        }
        const UserId=req._id;
+       let imageUrl = null;
+
+
+       if (req.file) {
+        const cloudinaryRes = await uploadOnCloudinary(req.file.path);
+        imageUrl = cloudinaryRes?.secure_url;
+      
+      }
         const event =await Event.create({
         title,
         maxRounds:Number(maxRounds),
@@ -26,7 +37,8 @@ export const RegisterEvent=async(req,res)=>{
         category:category,
         description:description,
         prizePool:prizePool,
-        createdBy:UserId
+        createdBy:UserId,
+        coverImage: imageUrl,
        })
 
        return res.status(200).json({
@@ -174,7 +186,8 @@ export const deleteEvent=async(req,res)=>{
                 success:false
             })
         }
-        if (event.createdBy.toString() !== req.user._id) {
+        
+        if (event.createdBy.toString() !== req.user._id.toString()) {
             return res.status(403).json({
               message: "Only the event creator can delete this event.",
               success: false,

@@ -48,6 +48,7 @@ function CategoryEvents() {
             title={event.title}
             description={event.description}
             Location={event.location || "Not specified"}
+            image={event.coverImage}
           />
           </Link>
         ))}

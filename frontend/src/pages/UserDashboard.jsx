@@ -9,6 +9,8 @@ import MyTeams from './MyTeams.jsx';
 import EventCalendar from './EventCalendar.jsx';
 import MyApplications from '../components/MyApplications.jsx';
 import MyRequests from '../components/MyRequests.jsx';
+import HostEvents from '../components/HostEvents.jsx';
+import ManageAdminEvents from '../components/ManageAdminEvents.jsx';
 
 const RenderItems = () => {
   const { buttonTitle } = useContext(MainContext);
@@ -18,15 +20,19 @@ const RenderItems = () => {
       return <Profile />;
     case 'viewteams':
       return <MyTeams />;
-    // Add other cases here
     case 'myapplications':
       return <MyRequests/>
     case 'teamrequests':
       return <MyApplications/>
     case 'eventcalendar':
       return <EventCalendar/>
+      case 'hostevents':
+        return <HostEvents/>
+    case 'manageevent':
+      return <ManageAdminEvents/>
     default:
       return <Profile />;
+    
   }
 };
 function UserDashboard() {

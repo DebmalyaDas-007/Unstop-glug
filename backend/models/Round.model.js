@@ -21,6 +21,9 @@ const RoundSchema=new mongoose.Schema({
         type:Number,
         required:true
     },
+    requiredFiles:{
+        type:String
+    },
     selectedTeams:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Team"

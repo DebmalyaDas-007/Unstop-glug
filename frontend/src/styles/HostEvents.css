@@ -1,0 +1,195 @@
+/* Container Title */
+.hoster-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #2d2d2d;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+  }
+  
+  /* Instruction Page */
+  .instruction {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #f0f4ff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;
+  }
+  
+  .instruction h2 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    color: #1e3a8a;
+  }
+  
+  .instruction h3 {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    color: #2563eb;
+  }
+  
+  .instruction p, .instruction ul {
+    font-size: 1rem;
+    color: #333;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .continue {
+    display: block;
+    margin: 2rem auto 0;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    background: linear-gradient(to right, #3b82f6, #2563eb);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .continue:hover {
+    background-color: #1d4ed8;
+  }
+  
+  /* Form Container */
+  .form-host-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  }
+  
+  .event-host-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.3rem;
+    color: #1e3a8a;
+  }
+  
+  .subheader-host {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+  
+  .input-host {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    transition: all 0.2s ease;
+  }
+  
+  .input-host:focus {
+    border-color: #3b82f6;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+  }
+  
+  /* Buttons */
+  .host-button, .submit-button {
+    margin-top: 1rem;
+    margin-right: 1rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    background: linear-gradient(to right, #3b82f6, #2563eb);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .host-button:hover, .submit-button:hover {
+    background: linear-gradient(to right, #2563eb, #1d4ed8);
+  }
+ /* Simple Loading Overlay */
+/* Host Event Loading Overlay */
+.loading-overlay-host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-modal-host {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.loading-modal-host h3 {
+  margin: 15px 0 5px;
+  color: #333;
+}
+
+.loading-modal-host p {
+  margin: 0;
+  color: #666;
+}
+
+/* Host Event Circular Spinner */
+.loading-spinner-host {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px;
+  min-height: 40px;
+  border: 3px solid #f0f0f0;
+  border-top: 3px solid #007bff;
+  border-radius: 50%;
+  animation: spin-host 1s linear infinite;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: block;
+}
+
+/* Host Event Button Spinner */
+.spinner-host {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px;
+  min-height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin-host 1s linear infinite;
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+.loading-content-host {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Host Event Spin Animation */
+@keyframes spin-host {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Host Event Disabled Buttons */
+.host-button:disabled,
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

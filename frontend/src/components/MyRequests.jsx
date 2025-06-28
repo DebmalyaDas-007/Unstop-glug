@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import '../styles/MyRequests.css'; // styles
+import '../styles/MyRequests.css'; 
 import {
   CalendarDays,
   FileText,
@@ -8,7 +8,7 @@ import {
   CircleDot,
   Loader2,
   AlertTriangle,
-} from 'lucide-react'; // Lucide icons
+} from 'lucide-react'; 
 
 const MyRequests = () => {
   const [myApps, setMyApps] = useState([]);
